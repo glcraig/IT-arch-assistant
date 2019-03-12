@@ -12,7 +12,6 @@ The Documentation is organized in the following sections:
 - [Workspace Details](#workspace---private-collaboration-and-bookmarks)
 - [Basic authoring of architecture artifacts](#authoring)
 - [Import and Export](#import-and-export)
-- [Interactive Guidance - Archie](#archie-chatbot)  
 - [Detailed authoring - by artifact type](../../master/docs/Artifact-Details-1.1.md) 
  
 
