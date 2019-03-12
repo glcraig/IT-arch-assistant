@@ -1,4 +1,4 @@
-# IBM IT Architect Assistant User Guide v2.1
+# IBM IT Architect Assistant User Guide v1.1
 **IBM IT Architect Assistant** (Architect Assistant) is a simple web-based tool to assist an Architect in designing a solution by finding the best/relevant/potential architectural solutions and/or patterns and customizing them for specific needs.
 
 At its core, **Architect Assistant** is both a solution model authoring tool as well as a searchable repository of authored solution architectures/models.
@@ -32,7 +32,7 @@ An owner can explicitly "invite" collaborators and assign corresponding role to 
 
 **Shared Elements** -- The building blocks of an architecture are a set of architectural elements. Each of these elements have a specific type along with a set of attributes. Many of the architecture elements contribute to and are referenced within multiple artifacts and artifact instances. As such it is important that these elements are shared (i.e., by reference). The implication is that each shared element must have a unique name within the architecture. To enforce this constraint the tool will flag as an error anytime a new element is created and given a name already in use in the architecture.  This error forces the user to either bind to (reference) the currently existing shared element or if the user needs to reference a different architecture element, supply the new element with a unique name. For example, adding a new Logical Node to an AOD IT System View instance and giving it the name **Security Services** when a Logical Node with that name already exists (perhaps on a different diagram instance) results in an error (duplicate name error). To resolve this the user can click on the **Select from existing** button and point to the existing Logical Node, indicating you are reusing the same element. Alternatively a different (unique) name can be assigned. Either approach will remove the error.
 
-([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v21))
+([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
  
 
 ## Getting Started
@@ -55,7 +55,7 @@ When a user logs into Architect Assistant they are presented with two (2) or pot
 
 The two primary tabs (sections) of the tool are **Workspace** and **Search**. **Search** is used to discover existing assets found in the Public and As-Is repositories. **Workspace** is where a user has access to a specific set of architectures. If a user is the owner of 1 or more architectures that are discoverable via search, then the **Dashboard** tab will be available.  The Dashboard provides information about who has made copies of the user's "published" architectures. 
 
-([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v21))
+([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
 
 ### Search
 When a user navigates to the Search page, they are presented with the **top trending public assets** along with a search bar.  
@@ -90,7 +90,7 @@ The result of a search produces a set of cards for the architectures matching th
 
 ![Filtering Search Results](../images/search-filtering.png)
 
-([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v21))
+([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
 
 ### Architecture Card Elements
 
@@ -116,7 +116,7 @@ In general, if you choose to open an architecture discovered via search you will
 
 First, the bookmark button, which allows you to add a link to this architecture to your bookmarks to either locate it more quickly later or to reference the asset for fine-grained copy and paste. Second is the copy button that allows you to create your own **private read-write** copy of the complete architecture. If you choose to create a private copy, you will supply a unique architecture name and optionally provide client name, opportunity number and tags.  Once the copy has been created you will be taken to your Private Workspace view where you can then open this newly created copy.
 
-([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v21))
+([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
 
 ### Workspace - Private, Collaboration, and Bookmarks
 
@@ -134,7 +134,7 @@ The third workspace tab is labeled **Bookmarks** and provide links to discoverab
 
 Back on the private workspace where you find the set of architectures you own, there are a set of options available to you on the "more" **...** menu. Always available on all architectures everywhere is **Copy**.  This requests a new copy of the architecture to be created, owned by the invoker. Scenarios for copying include implicit versioning or starting a new project with an initial starting point. In addition, as an owner of an asset you will have the ability to select **Delete** off of the same menu. Finally, in the current release, if you are and editor or owner of an asset and there are at least 2 editors, then this menu will have an item to control access to edit privileges. The menu will either contain **Get pen** or if you already are the designated editor (holder of the pen) the menu item will be **Return pen** whereby you can relinquish editing control.
 
-([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v21))
+([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
 
 ## Authoring
 
@@ -218,7 +218,7 @@ In addition to adding and associating steps to connectors, you can also select a
 
 ![Usage scenario](../images/sample-usage-scenario.png)
 
-([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v21))
+([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
 
 ## Breadcrumbs and Navigation
 
@@ -249,4 +249,4 @@ Import by default supports *Add*, *Update*, and *Rename*. The parser checks the 
 
 In the future, expect to see additional functionality added to the existing import/export utilities including support for other external formats.
 
-([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v21))
+([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
