@@ -131,8 +131,11 @@ You might be given **Editor** rights to an architecture whereby you can become a
 
 The third workspace tab is labeled **Bookmarks** and provide links to discoverable architectures that you have chosen to bookmark.  These are particularly useful to reference an asset which you will use to copy from. Generally you will be copying a small portion of the architecture, e.g. as an interaction pattern from one of its diagrams.
 
-Back on the private workspace where you find the set of architectures you own, there are a set of options available to you on the "more" **...** menu. Always available on all architectures everywhere is **Copy**.  This requests a new copy of the architecture to be created, owned by the invoker. Scenarios for copying include implicit versioning or starting a new project with an initial starting point. In addition, as an owner of an asset you will have the ability to select **Delete** off of the same menu. Finally, in the current release, if you are and editor or owner of an asset and there are at least 2 editors, then this menu will have an item to control access to edit privileges. The menu will either contain **Get pen** or if you already are the designated editor (holder of the pen) the menu item will be **Return pen** whereby you can relinquish editing control.
+Back on the private workspace where you find the set of architectures you own, there are a set of options available to you on the "more" **...** menu. Always available on all architectures everywhere is **Copy**.  This requests a new copy of the architecture to be created, owned by the invoker. Scenarios for copying include implicit versioning or starting a new project with an initial starting point. In addition, as an owner of an asset you will have the ability to select **Delete** off of the same menu. 
 
+#### Get and Return Pen - multi-author collaboration
+
+Finally, in the current release, if you are an editor or owner of an asset and there are at least 2 editors, then the **...** menu will have an item to control access to edit privileges. The menu will either contain **Get pen** or if you already are the designated editor (holder of the pen) the menu item will be **Return pen** whereby you can relinquish editing control. If no one current has acquired the pen, then everyone has only **read-only** access to the architecture. In this situation, you must hold the pen to be able to edit.
 ([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
 
 ## Authoring
