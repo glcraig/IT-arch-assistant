@@ -124,7 +124,9 @@ NFRs and Architectural Decisions generally apply to a particular part of the sol
 
 ### Logical Data Model
 
-The Logical Data Model artifact type provides the ability to create instances of an Entity-Relationship diagram (ERD).
+The Logical Data Model artifact type provides the ability to create instances of an Entity-Relationship diagram (ERD). There are 3 key elements that appear (as symbols) on an E-R diagram, Entities, Relationships, and Generalization (IS-A).  In addition to the typical name and description attributes, and entity can have any number of *attribute* attributes. In the current meta-model and attribute has a name, description and type (e.g., String, Customer, ...).  A relationship connects two Entities.  There is a multiplicity indication next to each entity to indicate the multiplicity of that entity that can participate in the relation.  A relationship can also have *attribute*s associated with them.  Finally, you can indicate that an Entity specializes or has a generalization/Is-A relationship with another Entity.   This Is-A relationship is represented by a triangle.
+
+![Sample ERD](../images/ERD-sample.png)
 
 ([Back to Top and TOC](#ibm-it-architect-assistant---detailed-authoring-by-artifact-type-v11))
 
