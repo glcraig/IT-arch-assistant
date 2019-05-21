@@ -11,15 +11,16 @@ The Documentation is organized in the following sections:
 - [Architecture Cards](#architecture-card-elements)  
 - [Workspace Details](#workspace---private-collaboration-and-bookmarks)
 - [Basic authoring of architecture artifacts](#authoring)
+- [Reuse, Copy and Paste](#copy-and-paste)
 - [Import and Export](#import-and-export)
 - [Detailed authoring - by artifact type](../../master/docs/Artifact-Details-1.1.md) 
- 
+
 
 ## Terminology
 Before diving into details about Architect Assistant it is important to understand some key terminology used throughout the documentation.  
 
 **Logical Asset Repositories** -- Today there are 3 logical repositories of architectures: **Public**, this contains curated, read-only architectures that can be discovered via search; **Private**, every user has a set of private assets that they own, that by default are read-write and not discoverable by other users; **As-Is**, any private asset can be set as discoverable (marked As-Is) by the owner. As-Is assets are searchable and anyone following the link to an As-Is asset will be added as a "Viewer" collaborator.  
-  
+
 **Collaboration Roles** -- All architectures have an **owner**. For private (and thus also As-Is) architectures there can be a set of collaborators. A collaborator is a user that has a set of permissions for the architecture. The roles are:  
 - **Viewer** -- has read-only access to the architecture  
 - **Editor** -- can make changes to any content of the architecture  
@@ -32,10 +33,10 @@ An owner can explicitly "invite" collaborators and assign corresponding role to 
 **Shared Elements** -- The building blocks of an architecture are a set of architectural elements. Each of these elements have a specific type along with a set of attributes. Many of the architecture elements contribute to and are referenced within multiple artifacts and artifact instances. As such it is important that these elements are shared (i.e., by reference). The implication is that each shared element must have a unique name within the architecture. To enforce this constraint the tool will flag as an error anytime a new element is created and given a name already in use in the architecture.  This error forces the user to either bind to (reference) the currently existing shared element or if the user needs to reference a different architecture element, supply the new element with a unique name. For example, adding a new Logical Node to an AOD IT System View instance and giving it the name **Security Services** when a Logical Node with that name already exists (perhaps on a different diagram instance) results in an error (duplicate name error). To resolve this the user can click on the **Select from existing** button and point to the existing Logical Node, indicating you are reusing the same element. Alternatively a different (unique) name can be assigned. Either approach will remove the error.
 
 ([Back to Top and TOC](#ibm-it-architect-assistant-user-guide-v11))
- 
+
 
 ## Getting Started
-  
+
 Getting started with Architect Assistant depends on your usage intent. The most common usage intents are:  
 - Search for and review an existing and accessible architecture. This scenario may be to support an architect understanding about what assets are available and/or specific details about any particular architecture.  
 - Author a new or existing architecture.  
@@ -59,9 +60,15 @@ The two primary tabs (sections) of the tool are **Workspace** and **Search**. **
 ### Search
 When a user navigates to the Search page, they are presented with the **top trending public assets** along with a search bar.  
 
-![Search Page](../images/CAsearch-2.1.png)  
+Currently the search is made against a set of keywords and tags as well as the text of the Title of the architecture.  Each architecture can have a set of tags associated with them. These include the applicable **Industry(ies), Technology(ies), and Tags**.  
 
-Currently the search is made against a set of keywords and tags as well as the text of the Title of the architecture.  Each architecture can have a set of tags associated with them. These include the applicable **Industry(ies), Technology(ies), and Tags**.  In the above image, it can be seen that the tags are displayed on the architecture **card**. The corresponding search terms can be typed into the search text box and/or can be selected from the Catalog.
+
+
+![Basic Architecture card - Search result](../images/asset-card-search.png)
+
+
+
+In the above image, it can be seen that the tags are displayed on the architecture **card**. The corresponding search terms can be typed into the search text box and/or can be selected from the Catalog.
 
 The architectures returned in a search result set are either **public, readonly (curated)** assets or are **private, As-Is** assets. 
 
@@ -198,10 +205,15 @@ The Text panel let's you modify the text properties for the selected item.  This
 
 The Arrange panel allows you to position the layering of stacked items (to front, to back), the size of symbols and the position relative to the canvas, and flip and rotate symbols. Of perhaps most value is being able to select multiple symbols and align and space them.
 
-#### Undo, Save, and Auto-save
-Architect Assistant is a single page application (written in Angular). In this environment all of your edit operations are being handled within the Browser via the MxGraph javascript library. As you make changes, MxGraph is managing a "stack" of changes you make allowing you to "undo".  At the same time, nothing is being persisted to the back-end until a "Save" is performed.   Thus, if you were to make several changes and then close your Browser your update work will be lost. The Save button, in the upper right corner of the MxGraph editor, will write-back the current state of the diagram (and underlying architecture model) to the back-end for saving. 
+**Tip: Grouping** There are two separate approaches to "grouping" elements in diagrams: 1) containment (parent / child) and 2) Group.  You can define any symbol as being a container and optionally collapsible, for example Subsystem, Location, OMLocation.  This is done within the Style panel by clicking on **Edit Style** and  adding properties, "container=1;" and "collapsible=1;". Any symbol with container=1 will be highlighted when another symbol gets placed within it.  Then moving the parent (container) will move it along with all its contained children as a group.  You can also select multiple independent symbols, and then on the Arrange panel, click on **Group/Ungroup** to make them act like most drawing tool symbol groups.
 
-When a diagram is saved, the undo "stack" is cleared. Thus, undo is only available between "saves". In addition to the explicit save, Architect Assistant will "auto-save" your diagram every 10 minutes.
+\#### Undo, Save, and Auto-save
+
+Architect Assistant is a single page application (written in Angular). In this environment all of your edit operations are being handled within the Browser via the MxGraph javascript library. As you make changes, MxGraph is managing a "stack" of changes you make allowing you to "undo".  At the same time, nothing is being persisted to the back-end until a "Save" is performed.   Thus, if you were to make several changes and then close your Browser your work will be lost. The Save button, in the upper right corner of the MxGraph editor, will write-back the current state of the diagram (and underlying architecture model) to the back-end for saving. 
+
+When a diagram is saved, the undo "stack" is cleared. Thus, undo is only available between "saves". 
+
+In addition to the explicit save, Architect Assistant will "**auto-save**" your diagram every 5 minutes.
 
 #### Model validation rules and Auto-save
 Each diagram type has a set of validation rules associated with it to help maintain a valid architecture data model.  For example, a System Context diagram, must have 1 and exactly 1 Target System present on the diagram. In addition, all connectors must have 1 endpoint connected to the Target System and the other endpoint connected to an Actor. In other words, connectors are not allowed to connect two Actors together. Also while editing this diagram, there are some architecture-wide validation that is also being enforced, e.g., each of the Actors and Target system must be unique (unique name) within the Architecture.  Attempting to name a symbol/element with a name that already exists will generate an error. In the case of the System Context diagram, all of this validation can (and is) performed by the front-end logic, i.e., the UI. In other diagram types, there are some validation rules that can only be fully assessed by the back-end during a "save" operation. The user experience of these types of validation checks, is that you won't see the validation error message until the save happens. This is particularly odd for the user when the application "auto-saves". In this case you might not be actively doing anything in the editor, auto-save occurs, and the back-end detects a validation error and you likely get a "save failed" along with the validation error.
@@ -232,7 +244,42 @@ Within an architecture there are two different navigation mechanisms depending o
 
 ![Breadcrumb Navigation](../images/breadcrumb-navigation.png)
 
+([Back to Top and TOC](#cognitive-architect-user-guide))
+
+
+
+\## Copy and Paste
+
+With any documentation tool you want to be able to quickly reuse elements. This is logically a copy and paste operation. In some of our how-to videos, we describe both fine-grained and coarse-grained reuse support within Architect Assistant.  
+
+
+
+\### Course-Grained Reuse
+
+The **copy** operation at an architecture level (either via the '...' menu on the asset card or via the *copy* toolbar button within any architecture) is the purest form of course-grained reuse.   Take an architecture and make a new copy that can be customize independent of the source. This is where it is critical that we build and share (either globally via As-Is or published asset or via explicit collaboration with peers) architectures that form a good foundation for starting to build new solutions.
+
+\### Fine-Grained Reuse
+
+Contrasted with coarse-grained reuse is the desire to reuse individual architectural elements, artifact instances, and/or partial artifact instances (e.g. patterns).  These are various degrees of fine-grained reuse.  
+
+Within each artifact type there is the ability to copy an existing artifact instance within an architecture, name it as a unique instance and then customize that new artifact instance.  The complexity of the copy depends on the underlying complexity of the artifact instance itself.  For example, copying a Functional Requirement is much less complex than copying an AOD IT System View.
+
+What about fine-grained copying between architectures? Today there are two approaches based on the type of artifact. For "text-based" artifacts, the most streamlined copy-and-paste is actually an Export / Import operation (see next section on Import and Export). You can export a set of artifact instances from one architect to an Excel Spreadsheet and then import those artifact instances (possible filtered and edited while in spreadsheet form) into another architecture.  For diagrams, you need a much higher degree of control. On each of the diagram types in Architect Assistant there is the **Resource** menu.  And within that menu there are three choices: Open from Private, Open from Collaboration, and Open from Bookmarks.
+
+![Resource copy from menu](../images/resource-copy-menu.png)
+
+This allows you to select from 3 sets of architectures to copy from. Open from Private will list all of your private workspace architecture, Open from Collaboration will list all of the architectures in your collaboration workspace, while Open from Bookmarks allows you to access public assets that you have bookmarked. The user experience is then to select the architecture you want to copy from. Once an source architecture is selected you will be present with the list of architecture artifact instances that match the artifact type of your target diagram. (Only copying between the same artifact type instances is supported.) You then will select the artifact instance and that instance is opened read-only as an addition tab within the editor. You can then select a portion (or all) of the content of the source diagram and select copy, then click on the tab of your target diagram and select paste.
+
+![Target diagram with read-only source diagram tabs](../images/source-target-diagrams.png)
+
+Note, it is critical that the paste succeeds. So the tool does not allow for name conflicts. So as the elements are copied from the source to the target, if an element's name matches an element in the target architecture, the "pasted" element will be renamed using a "Copy of" prefix. If these "copied and renamed" elements align with an element in the target architecture you can then use the "Select from existing" option to properly integrate the pasted content.  For example, you are copying a set of Logical Nodes and connections representing a ETL pattern, and one of those nodes is named "Product Data Warehouse" and a node representing that same content already exists in the target architecture, initially on paste you will have a new Logical Node named "Copy of Product Data Warehouse".  If that node didn't already appear on the target diagram you could select the "Copy of Product Data Warehouse", click the Select from existing button and locate and select "Product Data Warehouse". This now "connects" the new set of elements with the existing architecture.  It also produces an "orphaned" Logical Node (not in use) with the name Copy of Product Data Warehouse.  Note if the Product Data Warehouse node was already present on the target diagram, rather than use the Select from existing, you would move the connection endpoints from the Copy of Product Data Warehouse and connect them instead to the pre-existing Product Data Warehouse and then delete the extra "Copy of Product Data Warehouse" node from the diagram.
+
+\#### Copy of elements within a diagram
+
+To support users that are used to quickly duplicating a symbol on a diagram to create a new element, a local copy-paste or "duplicate" behaves this way, namely a new architecture element of the same type is created with a new name "copy of <copied from name>". The copy will include the same direct attribute values and any "child" dependent relationship elements will also be cloned ("copy by value") as the source element to keep (duplicate) the same structure.
+
 ## Import and Export
+
 There is a lot of value of having everything associated with a Solution Architecture captured within a single asset that can easily be shared with collaborators. However there are many situations in which an architect would like to deliver a snapshot of the architecture in a different format, not requiring either the online or offline tool. Architect Assistant provides a set of import and export utilities to address these needs. Let's first take a look at the rich set of Export Utilities available. 
 
 ![Import/Export Toolbar button](../images/import-export-toolbar.png)
@@ -241,7 +288,7 @@ Above you see the toolbar button to access the import and export utilities. Firs
 - **Microsoft PowerPoint** - This produces a summary PPTX document containing the major sections of the architecture. This is a good way to quickly get content out in this format to share with others.  Clicking Next will generate the file and then prompt you with a Browser open/save dialog.
 - **Microsoft Excel** - This produces a multi-worksheet Excel document (XLSX) that include everything in the model with the exception of the diagram images. In reality, when you click next you are presented with a pick list of "reports" to be included in the export.  There are three groupings of reports, Architectural elements (the key reusable elements in the model), Text-based artifact reports (FRs, NFRs, ...), and Diagram-based artifacts that describe content that appears on each diagram.
 - **Microsoft Word** - Today this produces a standard all inclusive Word document.  In the future you will likely be able to select among a set of document templates.
- 
+
 If you choose Import you are presented with one* choice:
 - **Microsoft Excel** - This expects the import file to conform to a standard import template that you can download via the link. This import only supports the first two report groups from the Excel export utility. This allows you to add or modify shared architectural elements and well as all of the text-based artifacts.  This is a great way to manage working with FRs, NFRs, Use Cases, Architecture Decisions, etc. as spreadsheet data and import / update in a timely manner. 
 
